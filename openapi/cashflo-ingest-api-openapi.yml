@@ -1,0 +1,499 @@
+openapi: 3.0.3
+info:
+  title: Cashflo Data Ingestion API Documentation Ingest API
+  version: 1.0.0
+tags:
+- name: Ingest
+paths:
+  /v1/ingest/purchase-orders:
+    post:
+      summary: Ingests Purchase Orders
+      description: Endpoint to ingest purchase orders.
+      security:
+      - jwt: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrder'
+            example:
+              skipDuplicates: false
+              buyerOrgId: '14195'
+              purchaseOrders:
+              - status: 1
+                metadata:
+                  pocode: BUYER25689
+                  podate: 03/11/2023 18:23:45
+                  vendor_code: '330'
+                  vendor_name: DURATEX APPARELS
+                  exp_del_date: 30/11/2023 00:00:00
+                  buyername: Default
+                purchaseOrderNumber: BUYER25689
+                buyFromVendorMasterNumber: '330'
+                sourceCreationDate: '2023-11-03T18:15:48'
+                deliveryAt: '2023-11-30T00:00:00'
+                shipToBuyerFacilityCode: BUYER
+                billToBuyerFacilityCode: BUYER
+                totalAmount: 493500
+                purchaseOrderItems:
+                - metadata:
+                    skucode: '250831'
+                    skuname: 'Plaid: Gold & White (Utility)'
+                  materialDescription: 'Plaid: Gold & White (Utility)'
+                  purchaseOrderItemNo: '250831'
+                  quantity: 40
+                  quantityReceived: 29
+                  ratePerUnit: 470
+                  gstRate: 5
+                  discount: 0
+                  netAmount: 18800
+                  totalGstAmount: 940
+                  itemTotalAmount: 19740
+                payToVendorMasterNumber: '330'
+                itemCount: 1
+                deliveredTotalAmount: 380700
+      responses:
+        '202':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+      - Ingest
+  /v1/ingest/grns:
+    post:
+      summary: Ingests Goods Receipt Note (GRN)
+      description: Endpoint to ingest Goods Receipt Note (GRN)
+      security:
+      - jwt: []
+      requestBody:
+        description: GRN Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GRNRequest'
+            example:
+              value:
+                skipDuplicates: false
+                buyerOrgId: '212312'
+                grns:
+                - metadata:
+                    pocode: BUYER23175
+                  grnNumber: BUYER001777290
+                  buyFromVendorMasterNumber: '339'
+                  vendorInvoiceNo: 784/23-24
+                  orderNo: BUYER23175
+                  sourceCreationDate: '2023-12-11T12:05:33'
+                  shipToBuyerFacilityCode: BUYER
+                  grnItems:
+                  - metadata:
+                      lineno: '1'
+                    grnItemNumber: '234039'
+                    quantity: '47.000'
+                    unitCost: '465.000'
+                    gstPercent: '5.00'
+                    lineDiscount: 0
+                    qtyRejected: '0'
+                  billToBuyerFacilityCode: BUYER
+                  payToVendorMasterNumber: '339'
+      responses:
+        '202':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+      - Ingest
+  /v1/ingest/errors:
+    get:
+      summary: Ingestion errors associated with particular batch of ingestion
+      description: Errors for Purchase Orders
+      security:
+      - jwt: []
+      parameters:
+      - name: batchId
+        in: query
+        description: Find errors for particular ingestion batch
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderErrorsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      tags:
+      - Ingest
+components:
+  schemas:
+    PurchaseOrderItem:
+      type: object
+      required:
+      - purchaseOrderItemNo
+      - quantity
+      - quantityReceived
+      - ratePerUnit
+      - gstRate
+      - discount
+      - netAmount
+      - totalGstAmount
+      - itemTotalAmount
+      - materialDescription
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        materialDescription:
+          type: string
+          description: Description of the material in the purchase order item
+        purchaseOrderItemNo:
+          type: string
+          description: Unique identifier for the purchase order item
+        quantity:
+          type: number
+          description: Quantity of the material in the purchase order item
+        quantityReceived:
+          type: number
+          description: Quantity of the material received
+        ratePerUnit:
+          type: number
+          description: Rate per unit of the material
+        gstRate:
+          type: number
+          description: GST rate applied to the material
+        discount:
+          type: number
+          description: Discount applied to the material
+        netAmount:
+          type: number
+          description: Net amount for the material
+        totalGstAmount:
+          type: number
+          description: Total GST amount for the material
+        itemTotalAmount:
+          type: number
+          description: Total amount for the purchase order item
+        hsnCode:
+          type: number
+          description: HSN Code for purchase order
+    GRNRequest:
+      type: object
+      required:
+      - buyerOrgId
+      - grns
+      description: Request structure for processing GRN
+      properties:
+        skipDuplicates:
+          type: boolean
+          description: Flag to skip duplicate entries
+        buyerOrgId:
+          type: string
+          description: ID of the buying organization
+        grns:
+          type: array
+          description: List of Goods Receipt Note entries
+          items:
+            $ref: '#/components/schemas/GRNItems'
+    IngestionSuccess:
+      type: object
+      properties:
+        batchId:
+          type: string
+          description: Ingestion batch id for retriving error details
+        message:
+          type: string
+          description: Informative message
+    GRNItems:
+      type: object
+      description: Goods Receipt Note entry details
+      required:
+      - grnNumber
+      - buyFromVendorMasterNumber
+      - vendorInvoiceNo
+      - orderNo
+      - sourceCreationDate
+      - shipToBuyerFacilityCode
+      - grnItems
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        grnNumber:
+          type: string
+          description: Unique identifier for the GRN entry
+        buyFromVendorMasterNumber:
+          type: string
+          description: Vendor master number for the buying organization
+        vendorInvoiceNo:
+          type: string
+          description: Vendor's invoice number
+        orderNo:
+          type: string
+          description: Purchase order number
+        sourceCreationDate:
+          type: string
+          format: date-time
+          description: Date of GRN creation
+        shipToBuyerFacilityCode:
+          type: string
+          description: Code for the buyer's facility
+        grnItems:
+          type: array
+          description: List of items in the GRN
+          items:
+            $ref: '#/components/schemas/GRNItem'
+        billToBuyerFacilityCode:
+          type: string
+          description: Code for the buyer's billing facility
+        payToVendorMasterNumber:
+          type: string
+          description: Vendor master number for payment
+    SinglePurchaseOrder:
+      type: object
+      required:
+      - status
+      - purchaseOrderNumber
+      - buyFromVendorMasterNumber
+      - sourceCreationDate
+      - deliveryAt
+      - shipToBuyerFacilityCode
+      - billToBuyerFacilityCode
+      - totalAmount
+      - purchaseOrderItems
+      - payToVendorMasterNumber
+      - itemCount
+      - deliveredTotalAmount
+      - issuedAt
+      properties:
+        issuedAt:
+          type: string
+          format: date-time
+          description: Date and time when the purchase order was issued
+        status:
+          type: integer
+          description: Status of the purchase order
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        purchaseOrderNumber:
+          type: string
+          description: Unique identifier for the purchase order
+        buyFromVendorMasterNumber:
+          type: string
+          description: Identifier for the vendor from whom the purchase order is made
+        sourceCreationDate:
+          type: string
+          format: date-time
+          description: Date and time when the purchase order was created
+        deliveryAt:
+          type: string
+          format: date-time
+          description: Date and time when the purchase order should be delivered
+        shipToBuyerFacilityCode:
+          type: string
+          description: Code for the facility where the items should be shipped to
+        billToBuyerFacilityCode:
+          type: string
+          description: Code for the facility where the bill should be sent to
+        totalAmount:
+          type: number
+          description: Total amount of the purchase order
+        purchaseOrderItems:
+          type: array
+          description: List of items in the purchase order
+          items:
+            $ref: '#/components/schemas/PurchaseOrderItem'
+        payToVendorMasterNumber:
+          type: string
+          description: Identifier for the vendor to whom the payment should be made
+        itemCount:
+          type: integer
+          description: Total number of items in the purchase order
+        deliveredTotalAmount:
+          type: number
+          description: Total amount of items delivered
+    PurchaseOrderError:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: The status of the purchase order
+        purchaseOrderNumber:
+          type: string
+          description: The purchase order number
+        buyFromVendorMasterNumber:
+          type: integer
+          description: The vendor master number for the buying entity
+        sourceCreationDate:
+          type: string
+          format: date-time
+          description: The creation date of the purchase order
+        deliveryAt:
+          type: string
+          format: date-time
+          description: The delivery date of the purchase order
+        shipToBuyerFacilityCode:
+          type: string
+          description: The facility code for shipping to the buyer
+        billToBuyerFacilityCode:
+          type: string
+          description: The facility code for billing to the buyer
+        totalAmount:
+          type: integer
+          description: The total amount of the purchase order
+        payToVendorMasterNumber:
+          type: integer
+          description: The vendor master number for payment
+        itemCount:
+          type: integer
+          description: The number of items in the purchase order
+        deliveredTotalAmount:
+          type: integer
+          description: The total amount delivered
+        poVendorCode:
+          type: integer
+          nullable: true
+          description: The vendor code associated with the purchase order. It can be null.
+        error:
+          type: string
+          nullable: true
+          description: Error message describing the details of error
+      example:
+        status: 1
+        purchaseOrderNumber: BUYER25098
+        buyFromVendorMasterNumber: 379
+        sourceCreationDate: '2023-10-10T21:34:20'
+        deliveryAt: '2023-12-15T00:00:00'
+        shipToBuyerFacilityCode: BUYER
+        billToBuyerFacilityCode: BUYER
+        totalAmount: 588000
+        payToVendorMasterNumber: 379
+        itemCount: 6
+        deliveredTotalAmount: 0
+        poVendorCode: null
+        error: 'Vendor Master: 379 not found'
+    PurchaseOrderErrorsResponse:
+      type: object
+      properties:
+        purchaseOrders:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderError'
+          description: List of purchase orders
+    PurchaseOrder:
+      type: object
+      required:
+      - buyerOrgId
+      - purchaseOrders
+      properties:
+        skipDuplicates:
+          type: boolean
+          description: Whether to skip duplicate purchase orders
+        buyerOrgId:
+          type: string
+          description: Identifier for the buyer's organization
+        purchaseOrders:
+          type: array
+          description: List of purchase orders
+          items:
+            $ref: '#/components/schemas/SinglePurchaseOrder'
+    Metadata:
+      type: object
+      properties:
+        key_name_1:
+          type: string
+          description: Value associated with key_name_1
+        key_name_2:
+          type: string
+          description: Value associated with key_name_2
+        key_name_n:
+          type: string
+          description: Value associated with key_name_n
+    GRNItem:
+      type: object
+      description: Item details in the GRN
+      required:
+      - grnItemNumber
+      - quantity
+      - unitCost
+      - gstPercent
+      - lineDiscount
+      - qtyRejected
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        grnItemNumber:
+          type: number
+          description: Unique identifier for the GRN item
+        quantity:
+          type: number
+          description: Quantity received
+        unitCost:
+          type: number
+          description: Cost per unit
+        gstPercent:
+          type: number
+          description: GST percentage
+        lineDiscount:
+          type: number
+          description: Line discount percentage
+        qtyRejected:
+          type: number
+          description: Quantity rejected
+  responses:
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          example:
+            errorCode: INTERNAL_ERROR
+            message: An internal server error occurred. Please try again later.
+    Success:
+      description: Ingestion success details
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IngestionSuccess'
+          example:
+            message: Ingestion data accepted for processing.
+            batchId: 00hQAanwMn
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          example:
+            errorCode: UNAUTHORIZED
+            message: Authorization failed. Please provide a valid JWT token.
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          example:
+            errorCode: NOT_FOUND
+            message: Required information not found.
+    BadRequest:
+      description: Bad request, invalid input
+      content:
+        application/json:
+          example:
+            errorCode: BAD_REQUEST
+            message: The provided data is invalid. Please check your input.
+  securitySchemes:
+    jwt:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: JWT authorization header
