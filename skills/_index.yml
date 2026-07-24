@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/cashflo-data-ingestion-openapi.json
+skills:
+- file: cashflo-ingest-purchase-orders.md
+  name: Ingest purchase orders into CashFlo and reconcile errors
+  api: openapi/cashflo-data-ingestion-openapi.json
+  operations:
+  - POST /v1/ingest/purchase-orders
+  - GET /v1/ingest/errors
+- file: cashflo-ingest-grns.md
+  name: Ingest goods-receipt notes (GRNs) into CashFlo
+  api: openapi/cashflo-data-ingestion-openapi.json
+  operations:
+  - POST /v1/ingest/grns
+  - GET /v1/ingest/errors

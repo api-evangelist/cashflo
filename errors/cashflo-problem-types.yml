@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cashflo-data-ingestion-openapi.json
+format: http-status
+note: >-
+  The CashFlo Data Ingestion API documents error outcomes as bare HTTP status
+  codes; the responses declare no application/problem+json body, so this catalog
+  is NOT RFC 9457. Row-level ingestion failures are surfaced separately via the
+  batch-error retrieval endpoint (GET /v1/ingest/errors?batchId=...), which
+  returns a PurchaseOrderErrorsResponse listing each rejected record and its
+  status.
+problems:
+- status: 400
+  title: Bad Request
+  meaning: The ingestion payload was malformed or failed validation.
+  source_operations:
+  - openapi/cashflo-data-ingestion-openapi.json#POST /v1/ingest/purchase-orders
+  - openapi/cashflo-data-ingestion-openapi.json#POST /v1/ingest/grns
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid JWT in the Authorization header.
+  source_operations:
+  - openapi/cashflo-data-ingestion-openapi.json#POST /v1/ingest/purchase-orders
+  - openapi/cashflo-data-ingestion-openapi.json#POST /v1/ingest/grns
+  - openapi/cashflo-data-ingestion-openapi.json#GET /v1/ingest/errors
+- status: 404
+  title: Not Found
+  meaning: No ingestion batch matches the supplied batchId.
+  source_operations:
+  - openapi/cashflo-data-ingestion-openapi.json#GET /v1/ingest/errors
+- status: 500
+  title: Internal Server Error
+  meaning: An unexpected server-side error occurred while processing the request.
+  source_operations:
+  - openapi/cashflo-data-ingestion-openapi.json#POST /v1/ingest/purchase-orders
+  - openapi/cashflo-data-ingestion-openapi.json#POST /v1/ingest/grns
+  - openapi/cashflo-data-ingestion-openapi.json#GET /v1/ingest/errors
+batch_error_envelope:
+  endpoint: GET /v1/ingest/errors?batchId={batchId}
+  response_schema: PurchaseOrderErrorsResponse
+  record_schema: PurchaseOrderError
+  record_fields:
+  - status
+  - purchaseOrderNumber
+  - buyFromVendorMasterNumber
+  - sourceCreationDate

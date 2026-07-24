@@ -1,0 +1,24 @@
+# CashFlo
+
+> CashFlo is an India-based fintech platform that automates enterprise accounts payable, payments, GST compliance, vendor management, and supply-chain financing. It exposes a JWT-secured Data Ingestion API for pushing purchase orders and goods-receipt notes into the platform.
+
+## APIs
+
+- [CashFlo Data Ingestion API](https://developer.cashflo.io): Batch ingestion of purchase orders and goods-receipt notes (GRNs) with duplicate skipping and batch-error retrieval. OpenAPI 3.0.3, JWT auth.
+
+## Specs
+
+- [OpenAPI (Data Ingestion)](https://raw.githubusercontent.com/api-evangelist/cashflo/refs/heads/main/openapi/cashflo-data-ingestion-openapi.json)
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/cashflo/refs/heads/main/authentication/cashflo-authentication.yml)
+- [Error catalog](https://raw.githubusercontent.com/api-evangelist/cashflo/refs/heads/main/errors/cashflo-problem-types.yml)
+- [API conventions](https://raw.githubusercontent.com/api-evangelist/cashflo/refs/heads/main/conventions/cashflo-conventions.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/cashflo/refs/heads/main/data-model/cashflo-data-model.yml)
+
+## Docs
+
+- [Developer Portal / API Reference](https://developer.cashflo.io)
+- [ERP Integrations](https://www.cashflo.io/erp-integrations)
+- [Trust Centre](https://trust.cashflo.io)
+- [Blog / Magazine](https://www.cashflo.io/magazine)
+- [Terms of Use](https://www.cashflo.io/tnc/terms-of-use)
+- [Privacy Policy](https://www.cashflo.io/tnc/privacy-policy)

@@ -1,24 +1,108 @@
 aid: cashflo
 name: CashFlo
-description: 'CashFlo is a company surfaced as a portfolio company of general-catalyst and added to the
-  API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  CashFlo is an India-based fintech platform that automates enterprise finance
+  operations across accounts payable, payments, GST compliance, vendor
+  management, and supply-chain financing. Its modules cover invoice OCR and
+  n-way matching, approval workflows, multi-bank payments and reconciliation,
+  GST filing / e-invoicing / e-way bills, vendor onboarding and KYC, and dynamic
+  cash discounting for working-capital optimization. CashFlo connects to major
+  ERPs (SAP ECC/S4 HANA/Business One, Oracle NetSuite/Fusion/EBS, Microsoft
+  Dynamics 365/NAV/Business Central) and exposes a JWT-secured Data Ingestion
+  API for pushing purchase orders and goods-receipt notes into the platform.
+  Backed by General Catalyst.
 url: https://raw.githubusercontent.com/api-evangelist/cashflo/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - general-catalyst
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-developer-surface
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://cdn.prod.website-files.com/649d312d8aeae2926e7af2fe/674acdb7d5b408c0e8e9cf34_Homepage.webp
 tags:
 - Company
 - Fintech
-apis: []
+- Accounts Payable
+- Payments
+- Working Capital
+- Supply Chain Finance
+- ERP Integration
+- Compliance
+- India
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: cashflo:cashflo-ingest-api
+  name: CashFlo Ingest API
+  description: The Ingest API from CashFlo — 3 operation(s) for ingest.
+  humanURL: https://developer.cashflo.io
+  baseURL: https://developer.cashflo.io
+  tags:
+  - Ingest
+  properties:
+  - type: OpenAPI
+    url: openapi/cashflo-ingest-api-openapi.yml
+  - type: Authentication
+    url: authentication/cashflo-authentication.yml
+  - type: ErrorCatalog
+    url: errors/cashflo-problem-types.yml
+  - type: Conventions
+    url: conventions/cashflo-conventions.yml
+  - type: DataModel
+    url: data-model/cashflo-data-model.yml
+common:
+- type: DeveloperPortal
+  url: https://developer.cashflo.io
+- type: Documentation
+  url: https://developer.cashflo.io
+- type: APIReference
+  url: https://developer.cashflo.io
+- type: Authentication
+  url: authentication/cashflo-authentication.yml
+- type: Idempotency
+  url: conventions/cashflo-conventions.yml
+- type: Conformance
+  url: conformance/cashflo-conformance.yml
+- type: Lifecycle
+  url: lifecycle/cashflo-lifecycle.yml
+- type: DomainSecurity
+  url: security/cashflo-domain-security.yml
+- type: LLMsTxt
+  url: llms/cashflo-llms.txt
+- type: TrustCenter
+  url: https://trust.cashflo.io
+- type: GitHubOrganization
+  url: https://github.com/cashflo
+- type: Blog
+  url: https://www.cashflo.io/magazine
+- type: Login
+  url: https://app.cashflo.io/#/account/login
+- type: Support
+  url: https://www.cashflo.io/talk-to-us
+- type: TermsOfService
+  url: https://www.cashflo.io/tnc/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.cashflo.io/tnc/privacy-policy
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

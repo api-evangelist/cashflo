@@ -1,0 +1,14 @@
+{
+  "provider": "cashflo",
+  "sources": [
+    "cashflo-ingest-api-openapi.yml"
+  ],
+  "outputs": [
+    "cashflo-ingest-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

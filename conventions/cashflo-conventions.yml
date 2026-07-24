@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cashflo-data-ingestion-openapi.json
+api: CashFlo Data Ingestion API
+authentication:
+  style: JWT bearer token supplied in the Authorization request header
+  scheme_name: jwt
+  location: header
+  parameter: Authorization
+  see: authentication/cashflo-authentication.yml
+idempotency:
+  supported: true
+  mechanism: payload-level deduplication
+  field: skipDuplicates
+  scope: per ingestion batch (purchase orders and GRNs)
+  detail: >-
+    Both ingestion endpoints accept a boolean `skipDuplicates` flag on the
+    request body. When true, records already present are skipped rather than
+    duplicated, making re-submission of the same batch safe. There is no
+    Idempotency-Key header; deduplication is payload-driven.
+pagination:
+  supported: false
+  detail: No list/collection endpoints; the batch-error endpoint returns the full error set for one batchId.
+batching:
+  supported: true
+  detail: >-
+    Ingestion is batch-oriented. A single request carries a `buyerOrgId` plus an
+    array of records (`purchaseOrders[]` or `grns[]`). The API responds 202
+    Accepted with a tracking `batchId`.
+request_tracing:
+  mechanism: batchId
+  detail: >-
+    Every accepted ingestion returns a `batchId` (IngestionSuccess.batchId) used
+    to retrieve per-record failures via GET /v1/ingest/errors?batchId=...
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: All endpoints are namespaced under /v1/ingest/.
+error_handling:
+  style: HTTP status codes (400/401/404/500); row-level errors via batch-error endpoint
+  see: errors/cashflo-problem-types.yml
+rate_limit_signaling:
+  documented: false
+tenancy:
+  field: buyerOrgId
+  detail: Records are scoped to a buyer organization via the required buyerOrgId field.

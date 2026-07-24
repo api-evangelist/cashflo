@@ -1,0 +1,72 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cashflo-data-ingestion-openapi.json
+api: CashFlo Data Ingestion API
+entities:
+- name: PurchaseOrderBatch
+  schema: PurchaseOrder
+  description: Top-level ingestion envelope for a set of purchase orders.
+  key_fields: [buyerOrgId, skipDuplicates]
+- name: SinglePurchaseOrder
+  schema: SinglePurchaseOrder
+  description: An individual purchase order within a batch.
+  key_fields: [purchaseOrderNumber, buyFromVendorMasterNumber, payToVendorMasterNumber, status, totalAmount]
+- name: PurchaseOrderItem
+  schema: PurchaseOrderItem
+  description: A line item on a purchase order (material, quantity, GST, HSN code).
+  key_fields: [purchaseOrderItemNo, materialDescription, quantity, gstRate, hsnCode]
+- name: GRNBatch
+  schema: GRNRequest
+  description: Top-level ingestion envelope for goods-receipt notes.
+  key_fields: [buyerOrgId, skipDuplicates]
+- name: GRN
+  schema: GRNItems
+  description: An individual goods-receipt note within a batch.
+- name: GRNItem
+  schema: GRNItem
+  description: A line item on a goods-receipt note.
+- name: Metadata
+  schema: Metadata
+  description: Free-form metadata attached to purchase orders and items.
+- name: IngestionSuccess
+  schema: IngestionSuccess
+  description: Acknowledgement carrying the tracking batchId.
+  key_fields: [batchId]
+- name: PurchaseOrderError
+  schema: PurchaseOrderError
+  description: A single rejected record returned by the batch-error endpoint.
+  key_fields: [status, purchaseOrderNumber, buyFromVendorMasterNumber]
+relationships:
+- from: PurchaseOrderBatch
+  to: SinglePurchaseOrder
+  type: has_many
+  via: purchaseOrders
+- from: SinglePurchaseOrder
+  to: PurchaseOrderItem
+  type: has_many
+  via: purchaseOrderItems
+- from: SinglePurchaseOrder
+  to: Metadata
+  type: has_one
+  via: metadata
+- from: PurchaseOrderItem
+  to: Metadata
+  type: has_one
+  via: metadata
+- from: GRNBatch
+  to: GRN
+  type: has_many
+  via: grns
+- from: PurchaseOrderBatch
+  to: IngestionSuccess
+  type: has_one
+  via: batchId (returned on 202)
+- from: IngestionSuccess
+  to: PurchaseOrderError
+  type: has_many
+  via: batchId (queried at GET /v1/ingest/errors)
+notes: >-
+  buyFromVendorMasterNumber and payToVendorMasterNumber are integer references
+  to vendor master records; shipToBuyerFacilityCode / billToBuyerFacilityCode
+  reference buyer facility records. Those master/facility entities are not
+  themselves defined in the ingestion spec.

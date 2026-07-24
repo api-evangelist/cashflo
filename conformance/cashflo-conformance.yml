@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cashflo-data-ingestion-openapi.json
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: Spec declares openapi 3.0.3.
+- id: oauth2
+  conforms: false
+  evidence: Auth is a JWT supplied via an apiKey-style Authorization header, not an OAuth2 flow.
+- id: oidc
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Error responses are bare HTTP status codes with no application/problem+json body.
+- id: json-api
+  conforms: false
+- id: idempotency
+  conforms: true
+  evidence: Ingestion endpoints support payload-level deduplication via the skipDuplicates flag.
+- id: pagination
+  conforms: false
+  evidence: No collection/list endpoints.
+- id: bearer-jwt-auth
+  conforms: true
+  evidence: securityScheme jwt is a JWT carried in the Authorization header.

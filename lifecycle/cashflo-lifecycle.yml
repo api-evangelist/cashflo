@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cashflo-data-ingestion-openapi.json
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: All Data Ingestion API endpoints are namespaced under /v1/ingest/.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  detail: No deprecation policy or RFC 8594 Sunset/Deprecation header support was found published.
+deprecated_operations: []
+sla:
+  url: null
+status_page: null
+notes: >-
+  No public status page, SLA, versioning policy, or deprecation policy was
+  located on the CashFlo developer or main sites. A Trust Centre exists at
+  https://trust.cashflo.io but did not publish these operational commitments in
+  crawlable form. Only the uri-path version (v1) is derivable from the spec.

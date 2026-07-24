@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for CashFlo Data Ingestion API
+  version: 1.0.0
+extends: openapi/cashflo-data-ingestion-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: true
+    x-apievangelist-provider: cashflo
+    description: >-
+      JWT-secured REST API for ingesting purchase orders and goods-receipt notes
+      (GRNs) into the CashFlo platform in batches, with payload-level duplicate
+      skipping and a batch-error retrieval endpoint.
+- target: $.paths['/v1/ingest/purchase-orders'].post
+  update:
+    operationId: ingestPurchaseOrders
+    tags: [Purchase Orders]
+- target: $.paths['/v1/ingest/grns'].post
+  update:
+    operationId: ingestGrns
+    tags: [Goods Receipt Notes]
+- target: $.paths['/v1/ingest/errors'].get
+  update:
+    operationId: getIngestionErrors
+    tags: [Errors]
