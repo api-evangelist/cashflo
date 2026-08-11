@@ -69,6 +69,12 @@ apis:
   - type: DataModel
     url: data-model/cashflo-data-model.yml
 common:
+- type: AgentSkill
+  url: skills/cashflo-ingest-grns.md
+- type: MCPServer
+  url: mcp/cashflo-mcp.yml
+- type: Overlay
+  url: overlays/cashflo-data-ingestion-overlay.yaml
 - type: DeveloperPortal
   url: https://developer.cashflo.io
 - type: Documentation
