@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Cashflo Data Ingestion API Documentation Ingest API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ingest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ingests Purchase Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/ingest/purchase-orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Endpoint to ingest purchase orders."
+        },
+        {
+          "info": {
+            "name": "Ingests Goods Receipt Note (GRN)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/ingest/grns",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Endpoint to ingest Goods Receipt Note (GRN)"
+        },
+        {
+          "info": {
+            "name": "Ingestion errors associated with particular batch of ingestion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/ingest/errors",
+            "params": [
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "query",
+                "description": "Find errors for particular ingestion batch"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Errors for Purchase Orders"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

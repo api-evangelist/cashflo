@@ -2,16 +2,16 @@ generated: '2026-07-18'
 method: derived
 status: candidate
 source: openapi/cashflo-data-ingestion-openapi.json
-note: >-
-  No official hosted/remote MCP server was found for CashFlo. This is a candidate
-  tool list derived from the Data Ingestion API operations. Operation references
-  use method+path because the source spec declares no operationIds.
+note: No official hosted/remote MCP server was found for CashFlo. This is a candidate tool list derived
+  from the Data Ingestion API operations. Operation references use method+path because the source spec
+  declares no operationIds.
 server:
   name: cashflo-data-ingestion
   transport: http
 tools:
 - name: ingest_purchase_orders
-  description: Ingest a batch of purchase orders (with optional duplicate skipping) and receive a tracking batchId.
+  description: Ingest a batch of purchase orders (with optional duplicate skipping) and receive a tracking
+    batchId.
   source_operation: openapi/cashflo-data-ingestion-openapi.json#POST /v1/ingest/purchase-orders
 - name: ingest_grns
   description: Ingest a batch of goods-receipt notes (GRNs) and receive a tracking batchId.
@@ -19,3 +19,9 @@ tools:
 - name: get_ingestion_errors
   description: Retrieve per-record ingestion errors for a given batchId.
   source_operation: openapi/cashflo-data-ingestion-openapi.json#GET /v1/ingest/errors
+deployment:
+  mode: none
+  verified: derived
+  tools: 3
+  checked: '2026-08-12'
+  source: catalog MCP census

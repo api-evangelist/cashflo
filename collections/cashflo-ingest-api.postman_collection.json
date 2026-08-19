@@ -1,0 +1,848 @@
+{
+  "item": [
+    {
+      "id": "c16a4618-e20b-407a-8aac-314a745f0e71",
+      "name": "Ingest",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de75850f-cadd-4862-9038-9269dd99a246",
+          "name": "Ingests Purchase Orders",
+          "request": {
+            "name": "Ingests Purchase Orders",
+            "description": {
+              "content": "Endpoint to ingest purchase orders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ingest",
+                "purchase-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"buyerOrgId\": \"<string>\",\n  \"purchaseOrders\": [\n    {\n      \"status\": \"<integer>\",\n      \"purchaseOrderNumber\": \"<string>\",\n      \"buyFromVendorMasterNumber\": \"<string>\",\n      \"sourceCreationDate\": \"<dateTime>\",\n      \"deliveryAt\": \"<dateTime>\",\n      \"shipToBuyerFacilityCode\": \"<string>\",\n      \"billToBuyerFacilityCode\": \"<string>\",\n      \"totalAmount\": \"<number>\",\n      \"purchaseOrderItems\": [\n        {\n          \"purchaseOrderItemNo\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"quantityReceived\": \"<number>\",\n          \"ratePerUnit\": \"<number>\",\n          \"gstRate\": \"<number>\",\n          \"discount\": \"<number>\",\n          \"netAmount\": \"<number>\",\n          \"totalGstAmount\": \"<number>\",\n          \"itemTotalAmount\": \"<number>\",\n          \"materialDescription\": \"<string>\",\n          \"metadata\": {\n            \"key_name_1\": \"<string>\",\n            \"key_name_2\": \"<string>\",\n            \"key_name_n\": \"<string>\"\n          },\n          \"hsnCode\": \"<number>\"\n        },\n        {\n          \"purchaseOrderItemNo\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"quantityReceived\": \"<number>\",\n          \"ratePerUnit\": \"<number>\",\n          \"gstRate\": \"<number>\",\n          \"discount\": \"<number>\",\n          \"netAmount\": \"<number>\",\n          \"totalGstAmount\": \"<number>\",\n          \"itemTotalAmount\": \"<number>\",\n          \"materialDescription\": \"<string>\",\n          \"metadata\": {\n            \"key_name_1\": \"<string>\",\n            \"key_name_2\": \"<string>\",\n            \"key_name_n\": \"<string>\"\n          },\n          \"hsnCode\": \"<number>\"\n        }\n      ],\n      \"payToVendorMasterNumber\": \"<string>\",\n      \"itemCount\": \"<integer>\",\n      \"deliveredTotalAmount\": \"<number>\",\n      \"issuedAt\": \"<dateTime>\",\n      \"metadata\": {\n        \"key_name_1\": \"<string>\",\n        \"key_name_2\": \"<string>\",\n        \"key_name_n\": \"<string>\"\n      }\n    },\n    {\n      \"status\": \"<integer>\",\n      \"purchaseOrderNumber\": \"<string>\",\n      \"buyFromVendorMasterNumber\": \"<string>\",\n      \"sourceCreationDate\": \"<dateTime>\",\n      \"deliveryAt\": \"<dateTime>\",\n      \"shipToBuyerFacilityCode\": \"<string>\",\n      \"billToBuyerFacilityCode\": \"<string>\",\n      \"totalAmount\": \"<number>\",\n      \"purchaseOrderItems\": [\n        {\n          \"purchaseOrderItemNo\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"quantityReceived\": \"<number>\",\n          \"ratePerUnit\": \"<number>\",\n          \"gstRate\": \"<number>\",\n          \"discount\": \"<number>\",\n          \"netAmount\": \"<number>\",\n          \"totalGstAmount\": \"<number>\",\n          \"itemTotalAmount\": \"<number>\",\n          \"materialDescription\": \"<string>\",\n          \"metadata\": {\n            \"key_name_1\": \"<string>\",\n            \"key_name_2\": \"<string>\",\n            \"key_name_n\": \"<string>\"\n          },\n          \"hsnCode\": \"<number>\"\n        },\n        {\n          \"purchaseOrderItemNo\": \"<string>\",\n          \"quantity\": \"<number>\",\n          \"quantityReceived\": \"<number>\",\n          \"ratePerUnit\": \"<number>\",\n          \"gstRate\": \"<number>\",\n          \"discount\": \"<number>\",\n          \"netAmount\": \"<number>\",\n          \"totalGstAmount\": \"<number>\",\n          \"itemTotalAmount\": \"<number>\",\n          \"materialDescription\": \"<string>\",\n          \"metadata\": {\n            \"key_name_1\": \"<string>\",\n            \"key_name_2\": \"<string>\",\n            \"key_name_n\": \"<string>\"\n          },\n          \"hsnCode\": \"<number>\"\n        }\n      ],\n      \"payToVendorMasterNumber\": \"<string>\",\n      \"itemCount\": \"<integer>\",\n      \"deliveredTotalAmount\": \"<number>\",\n      \"issuedAt\": \"<dateTime>\",\n      \"metadata\": {\n        \"key_name_1\": \"<string>\",\n        \"key_name_2\": \"<string>\",\n        \"key_name_n\": \"<string>\"\n      }\n    }\n  ],\n  \"skipDuplicates\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31714587-734e-4f7c-87d7-49b6f518a36d",
+              "name": "Ingestion success details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "purchase-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skipDuplicates\": false,\n  \"buyerOrgId\": \"14195\",\n  \"purchaseOrders\": [\n    {\n      \"status\": 1,\n      \"metadata\": {\n        \"pocode\": \"BUYER25689\",\n        \"podate\": \"03/11/2023 18:23:45\",\n        \"vendor_code\": \"330\",\n        \"vendor_name\": \"DURATEX APPARELS\",\n        \"exp_del_date\": \"30/11/2023 00:00:00\",\n        \"buyername\": \"Default\"\n      },\n      \"purchaseOrderNumber\": \"BUYER25689\",\n      \"buyFromVendorMasterNumber\": \"330\",\n      \"sourceCreationDate\": \"2023-11-03T18:15:48\",\n      \"deliveryAt\": \"2023-11-30T00:00:00\",\n      \"shipToBuyerFacilityCode\": \"BUYER\",\n      \"billToBuyerFacilityCode\": \"BUYER\",\n      \"totalAmount\": 493500,\n      \"purchaseOrderItems\": [\n        {\n          \"metadata\": {\n            \"skucode\": \"250831\",\n            \"skuname\": \"Plaid: Gold & White (Utility)\"\n          },\n          \"materialDescription\": \"Plaid: Gold & White (Utility)\",\n          \"purchaseOrderItemNo\": \"250831\",\n          \"quantity\": 40,\n          \"quantityReceived\": 29,\n          \"ratePerUnit\": 470,\n          \"gstRate\": 5,\n          \"discount\": 0,\n          \"netAmount\": 18800,\n          \"totalGstAmount\": 940,\n          \"itemTotalAmount\": 19740\n        }\n      ],\n      \"payToVendorMasterNumber\": \"330\",\n      \"itemCount\": 1,\n      \"deliveredTotalAmount\": 380700\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Ingestion data accepted for processing.\",\n  \"batchId\": \"00hQAanwMn\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51d4e948-1a78-46cb-a659-75f16d474868",
+              "name": "Bad request, invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "purchase-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skipDuplicates\": false,\n  \"buyerOrgId\": \"14195\",\n  \"purchaseOrders\": [\n    {\n      \"status\": 1,\n      \"metadata\": {\n        \"pocode\": \"BUYER25689\",\n        \"podate\": \"03/11/2023 18:23:45\",\n        \"vendor_code\": \"330\",\n        \"vendor_name\": \"DURATEX APPARELS\",\n        \"exp_del_date\": \"30/11/2023 00:00:00\",\n        \"buyername\": \"Default\"\n      },\n      \"purchaseOrderNumber\": \"BUYER25689\",\n      \"buyFromVendorMasterNumber\": \"330\",\n      \"sourceCreationDate\": \"2023-11-03T18:15:48\",\n      \"deliveryAt\": \"2023-11-30T00:00:00\",\n      \"shipToBuyerFacilityCode\": \"BUYER\",\n      \"billToBuyerFacilityCode\": \"BUYER\",\n      \"totalAmount\": 493500,\n      \"purchaseOrderItems\": [\n        {\n          \"metadata\": {\n            \"skucode\": \"250831\",\n            \"skuname\": \"Plaid: Gold & White (Utility)\"\n          },\n          \"materialDescription\": \"Plaid: Gold & White (Utility)\",\n          \"purchaseOrderItemNo\": \"250831\",\n          \"quantity\": 40,\n          \"quantityReceived\": 29,\n          \"ratePerUnit\": 470,\n          \"gstRate\": 5,\n          \"discount\": 0,\n          \"netAmount\": 18800,\n          \"totalGstAmount\": 940,\n          \"itemTotalAmount\": 19740\n        }\n      ],\n      \"payToVendorMasterNumber\": \"330\",\n      \"itemCount\": 1,\n      \"deliveredTotalAmount\": 380700\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"BAD_REQUEST\",\n  \"message\": \"The provided data is invalid. Please check your input.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb04cdee-ea2f-4884-affb-c72b4934fa8a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "purchase-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skipDuplicates\": false,\n  \"buyerOrgId\": \"14195\",\n  \"purchaseOrders\": [\n    {\n      \"status\": 1,\n      \"metadata\": {\n        \"pocode\": \"BUYER25689\",\n        \"podate\": \"03/11/2023 18:23:45\",\n        \"vendor_code\": \"330\",\n        \"vendor_name\": \"DURATEX APPARELS\",\n        \"exp_del_date\": \"30/11/2023 00:00:00\",\n        \"buyername\": \"Default\"\n      },\n      \"purchaseOrderNumber\": \"BUYER25689\",\n      \"buyFromVendorMasterNumber\": \"330\",\n      \"sourceCreationDate\": \"2023-11-03T18:15:48\",\n      \"deliveryAt\": \"2023-11-30T00:00:00\",\n      \"shipToBuyerFacilityCode\": \"BUYER\",\n      \"billToBuyerFacilityCode\": \"BUYER\",\n      \"totalAmount\": 493500,\n      \"purchaseOrderItems\": [\n        {\n          \"metadata\": {\n            \"skucode\": \"250831\",\n            \"skuname\": \"Plaid: Gold & White (Utility)\"\n          },\n          \"materialDescription\": \"Plaid: Gold & White (Utility)\",\n          \"purchaseOrderItemNo\": \"250831\",\n          \"quantity\": 40,\n          \"quantityReceived\": 29,\n          \"ratePerUnit\": 470,\n          \"gstRate\": 5,\n          \"discount\": 0,\n          \"netAmount\": 18800,\n          \"totalGstAmount\": 940,\n          \"itemTotalAmount\": 19740\n        }\n      ],\n      \"payToVendorMasterNumber\": \"330\",\n      \"itemCount\": 1,\n      \"deliveredTotalAmount\": 380700\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"UNAUTHORIZED\",\n  \"message\": \"Authorization failed. Please provide a valid JWT token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa728c81-8a7f-4419-bbf9-250424c4b264",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "purchase-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"skipDuplicates\": false,\n  \"buyerOrgId\": \"14195\",\n  \"purchaseOrders\": [\n    {\n      \"status\": 1,\n      \"metadata\": {\n        \"pocode\": \"BUYER25689\",\n        \"podate\": \"03/11/2023 18:23:45\",\n        \"vendor_code\": \"330\",\n        \"vendor_name\": \"DURATEX APPARELS\",\n        \"exp_del_date\": \"30/11/2023 00:00:00\",\n        \"buyername\": \"Default\"\n      },\n      \"purchaseOrderNumber\": \"BUYER25689\",\n      \"buyFromVendorMasterNumber\": \"330\",\n      \"sourceCreationDate\": \"2023-11-03T18:15:48\",\n      \"deliveryAt\": \"2023-11-30T00:00:00\",\n      \"shipToBuyerFacilityCode\": \"BUYER\",\n      \"billToBuyerFacilityCode\": \"BUYER\",\n      \"totalAmount\": 493500,\n      \"purchaseOrderItems\": [\n        {\n          \"metadata\": {\n            \"skucode\": \"250831\",\n            \"skuname\": \"Plaid: Gold & White (Utility)\"\n          },\n          \"materialDescription\": \"Plaid: Gold & White (Utility)\",\n          \"purchaseOrderItemNo\": \"250831\",\n          \"quantity\": 40,\n          \"quantityReceived\": 29,\n          \"ratePerUnit\": 470,\n          \"gstRate\": 5,\n          \"discount\": 0,\n          \"netAmount\": 18800,\n          \"totalGstAmount\": 940,\n          \"itemTotalAmount\": 19740\n        }\n      ],\n      \"payToVendorMasterNumber\": \"330\",\n      \"itemCount\": 1,\n      \"deliveredTotalAmount\": 380700\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"INTERNAL_ERROR\",\n  \"message\": \"An internal server error occurred. Please try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d36fad53-c24e-41b4-acdf-505217635c68",
+          "name": "Ingests Goods Receipt Note (GRN)",
+          "request": {
+            "name": "Ingests Goods Receipt Note (GRN)",
+            "description": {
+              "content": "Endpoint to ingest Goods Receipt Note (GRN)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ingest",
+                "grns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"buyerOrgId\": \"<string>\",\n  \"grns\": [\n    {\n      \"grnNumber\": \"<string>\",\n      \"buyFromVendorMasterNumber\": \"<string>\",\n      \"vendorInvoiceNo\": \"<string>\",\n      \"orderNo\": \"<string>\",\n      \"sourceCreationDate\": \"<dateTime>\",\n      \"shipToBuyerFacilityCode\": \"<string>\",\n      \"grnItems\": [\n        {\n          \"grnItemNumber\": \"<number>\",\n          \"quantity\": \"<number>\",\n          \"unitCost\": \"<number>\",\n          \"gstPercent\": \"<number>\",\n          \"lineDiscount\": \"<number>\",\n          \"qtyRejected\": \"<number>\",\n          \"metadata\": {\n            \"key_name_1\": \"<string>\",\n            \"key_name_2\": \"<string>\",\n            \"key_name_n\": \"<string>\"\n          }\n        },\n        {\n          \"grnItemNumber\": \"<number>\",\n          \"quantity\": \"<number>\",\n          \"unitCost\": \"<number>\",\n          \"gstPercent\": \"<number>\",\n          \"lineDiscount\": \"<number>\",\n          \"qtyRejected\": \"<number>\",\n          \"metadata\": {\n            \"key_name_1\": \"<string>\",\n            \"key_name_2\": \"<string>\",\n            \"key_name_n\": \"<string>\"\n          }\n        }\n      ],\n      \"metadata\": {\n        \"key_name_1\": \"<string>\",\n        \"key_name_2\": \"<string>\",\n        \"key_name_n\": \"<string>\"\n      },\n      \"billToBuyerFacilityCode\": \"<string>\",\n      \"payToVendorMasterNumber\": \"<string>\"\n    },\n    {\n      \"grnNumber\": \"<string>\",\n      \"buyFromVendorMasterNumber\": \"<string>\",\n      \"vendorInvoiceNo\": \"<string>\",\n      \"orderNo\": \"<string>\",\n      \"sourceCreationDate\": \"<dateTime>\",\n      \"shipToBuyerFacilityCode\": \"<string>\",\n      \"grnItems\": [\n        {\n          \"grnItemNumber\": \"<number>\",\n          \"quantity\": \"<number>\",\n          \"unitCost\": \"<number>\",\n          \"gstPercent\": \"<number>\",\n          \"lineDiscount\": \"<number>\",\n          \"qtyRejected\": \"<number>\",\n          \"metadata\": {\n            \"key_name_1\": \"<string>\",\n            \"key_name_2\": \"<string>\",\n            \"key_name_n\": \"<string>\"\n          }\n        },\n        {\n          \"grnItemNumber\": \"<number>\",\n          \"quantity\": \"<number>\",\n          \"unitCost\": \"<number>\",\n          \"gstPercent\": \"<number>\",\n          \"lineDiscount\": \"<number>\",\n          \"qtyRejected\": \"<number>\",\n          \"metadata\": {\n            \"key_name_1\": \"<string>\",\n            \"key_name_2\": \"<string>\",\n            \"key_name_n\": \"<string>\"\n          }\n        }\n      ],\n      \"metadata\": {\n        \"key_name_1\": \"<string>\",\n        \"key_name_2\": \"<string>\",\n        \"key_name_n\": \"<string>\"\n      },\n      \"billToBuyerFacilityCode\": \"<string>\",\n      \"payToVendorMasterNumber\": \"<string>\"\n    }\n  ],\n  \"skipDuplicates\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cba5e233-c66f-48a9-9160-0df37fe04c7d",
+              "name": "Ingestion success details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "grns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": {\n    \"skipDuplicates\": false,\n    \"buyerOrgId\": \"212312\",\n    \"grns\": [\n      {\n        \"metadata\": {\n          \"pocode\": \"BUYER23175\"\n        },\n        \"grnNumber\": \"BUYER001777290\",\n        \"buyFromVendorMasterNumber\": \"339\",\n        \"vendorInvoiceNo\": \"784/23-24\",\n        \"orderNo\": \"BUYER23175\",\n        \"sourceCreationDate\": \"2023-12-11T12:05:33\",\n        \"shipToBuyerFacilityCode\": \"BUYER\",\n        \"grnItems\": [\n          {\n            \"metadata\": {\n              \"lineno\": \"1\"\n            },\n            \"grnItemNumber\": \"234039\",\n            \"quantity\": \"47.000\",\n            \"unitCost\": \"465.000\",\n            \"gstPercent\": \"5.00\",\n            \"lineDiscount\": 0,\n            \"qtyRejected\": \"0\"\n          }\n        ],\n        \"billToBuyerFacilityCode\": \"BUYER\",\n        \"payToVendorMasterNumber\": \"339\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Ingestion data accepted for processing.\",\n  \"batchId\": \"00hQAanwMn\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66bfeec9-696a-4230-ae1f-819befe17705",
+              "name": "Bad request, invalid input",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "grns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": {\n    \"skipDuplicates\": false,\n    \"buyerOrgId\": \"212312\",\n    \"grns\": [\n      {\n        \"metadata\": {\n          \"pocode\": \"BUYER23175\"\n        },\n        \"grnNumber\": \"BUYER001777290\",\n        \"buyFromVendorMasterNumber\": \"339\",\n        \"vendorInvoiceNo\": \"784/23-24\",\n        \"orderNo\": \"BUYER23175\",\n        \"sourceCreationDate\": \"2023-12-11T12:05:33\",\n        \"shipToBuyerFacilityCode\": \"BUYER\",\n        \"grnItems\": [\n          {\n            \"metadata\": {\n              \"lineno\": \"1\"\n            },\n            \"grnItemNumber\": \"234039\",\n            \"quantity\": \"47.000\",\n            \"unitCost\": \"465.000\",\n            \"gstPercent\": \"5.00\",\n            \"lineDiscount\": 0,\n            \"qtyRejected\": \"0\"\n          }\n        ],\n        \"billToBuyerFacilityCode\": \"BUYER\",\n        \"payToVendorMasterNumber\": \"339\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"BAD_REQUEST\",\n  \"message\": \"The provided data is invalid. Please check your input.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f46bbae7-b6be-4697-851e-c36f13087c81",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "grns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": {\n    \"skipDuplicates\": false,\n    \"buyerOrgId\": \"212312\",\n    \"grns\": [\n      {\n        \"metadata\": {\n          \"pocode\": \"BUYER23175\"\n        },\n        \"grnNumber\": \"BUYER001777290\",\n        \"buyFromVendorMasterNumber\": \"339\",\n        \"vendorInvoiceNo\": \"784/23-24\",\n        \"orderNo\": \"BUYER23175\",\n        \"sourceCreationDate\": \"2023-12-11T12:05:33\",\n        \"shipToBuyerFacilityCode\": \"BUYER\",\n        \"grnItems\": [\n          {\n            \"metadata\": {\n              \"lineno\": \"1\"\n            },\n            \"grnItemNumber\": \"234039\",\n            \"quantity\": \"47.000\",\n            \"unitCost\": \"465.000\",\n            \"gstPercent\": \"5.00\",\n            \"lineDiscount\": 0,\n            \"qtyRejected\": \"0\"\n          }\n        ],\n        \"billToBuyerFacilityCode\": \"BUYER\",\n        \"payToVendorMasterNumber\": \"339\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"UNAUTHORIZED\",\n  \"message\": \"Authorization failed. Please provide a valid JWT token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1922652f-bf88-4a4f-9b67-cf7d0fc03740",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "grns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": {\n    \"skipDuplicates\": false,\n    \"buyerOrgId\": \"212312\",\n    \"grns\": [\n      {\n        \"metadata\": {\n          \"pocode\": \"BUYER23175\"\n        },\n        \"grnNumber\": \"BUYER001777290\",\n        \"buyFromVendorMasterNumber\": \"339\",\n        \"vendorInvoiceNo\": \"784/23-24\",\n        \"orderNo\": \"BUYER23175\",\n        \"sourceCreationDate\": \"2023-12-11T12:05:33\",\n        \"shipToBuyerFacilityCode\": \"BUYER\",\n        \"grnItems\": [\n          {\n            \"metadata\": {\n              \"lineno\": \"1\"\n            },\n            \"grnItemNumber\": \"234039\",\n            \"quantity\": \"47.000\",\n            \"unitCost\": \"465.000\",\n            \"gstPercent\": \"5.00\",\n            \"lineDiscount\": 0,\n            \"qtyRejected\": \"0\"\n          }\n        ],\n        \"billToBuyerFacilityCode\": \"BUYER\",\n        \"payToVendorMasterNumber\": \"339\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"INTERNAL_ERROR\",\n  \"message\": \"An internal server error occurred. Please try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0939f12-3e7c-49da-8448-c575c44da233",
+          "name": "Ingestion errors associated with particular batch of ingestion",
+          "request": {
+            "name": "Ingestion errors associated with particular batch of ingestion",
+            "description": {
+              "content": "Errors for Purchase Orders",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ingest",
+                "errors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "batchId",
+                  "value": "<string>",
+                  "description": "(Required) Find errors for particular ingestion batch"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ac7da913-8591-43c1-aef6-c5d43db5cc17",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "errors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "batchId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"purchaseOrders\": [\n    {\n      \"status\": 1,\n      \"purchaseOrderNumber\": \"BUYER25098\",\n      \"buyFromVendorMasterNumber\": 379,\n      \"sourceCreationDate\": \"2023-10-10T21:34:20\",\n      \"deliveryAt\": \"2023-12-15T00:00:00\",\n      \"shipToBuyerFacilityCode\": \"BUYER\",\n      \"billToBuyerFacilityCode\": \"BUYER\",\n      \"totalAmount\": 588000,\n      \"payToVendorMasterNumber\": 379,\n      \"itemCount\": 6,\n      \"deliveredTotalAmount\": 0,\n      \"poVendorCode\": null,\n      \"error\": \"Vendor Master: 379 not found\"\n    },\n    {\n      \"status\": 1,\n      \"purchaseOrderNumber\": \"BUYER25098\",\n      \"buyFromVendorMasterNumber\": 379,\n      \"sourceCreationDate\": \"2023-10-10T21:34:20\",\n      \"deliveryAt\": \"2023-12-15T00:00:00\",\n      \"shipToBuyerFacilityCode\": \"BUYER\",\n      \"billToBuyerFacilityCode\": \"BUYER\",\n      \"totalAmount\": 588000,\n      \"payToVendorMasterNumber\": 379,\n      \"itemCount\": 6,\n      \"deliveredTotalAmount\": 0,\n      \"poVendorCode\": null,\n      \"error\": \"Vendor Master: 379 not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efc04f22-40a2-49cd-a0ee-546aafc284e0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "errors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "batchId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"UNAUTHORIZED\",\n  \"message\": \"Authorization failed. Please provide a valid JWT token.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c2e3034-36ca-449a-93c8-4d299ca6983f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "errors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "batchId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"NOT_FOUND\",\n  \"message\": \"Required information not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "315ac449-1461-4f5c-b4bf-b34d7c933ad3",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ingest",
+                    "errors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "batchId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorCode\": \"INTERNAL_ERROR\",\n  \"message\": \"An internal server error occurred. Please try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d74b06fc-c7d0-44a5-ad65-845ffed59368",
+    "name": "Cashflo Data Ingestion API Documentation Ingest API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
