@@ -82,6 +82,8 @@ apis:
   - type: DataModel
     url: data-model/cashflo-data-model.yml
 common:
+- type: Website
+  url: https://www.cashflo.io/
 - type: AgentSkill
   url: skills/cashflo-ingest-grns.md
 - type: X-MCPServerCandidate
