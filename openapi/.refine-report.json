@@ -1,7 +1,7 @@
 {
   "provider": "cashflo",
   "sources": [
-    "cashflo-ingest-api-openapi.yml"
+    "_original/cashflo-data-ingestion-openapi.json"
   ],
   "outputs": [
     "cashflo-ingest-api-openapi.yml"
@@ -9,6 +9,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cashflo-data-ingestion-openapi.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "cashflo-data-ingestion-openapi.json: tagged paths POST /v1/ingest/purchase-orders -> Ingest",
+    "cashflo-data-ingestion-openapi.json: tagged paths POST /v1/ingest/grns -> Ingest",
+    "cashflo-data-ingestion-openapi.json: tagged paths GET /v1/ingest/errors -> Ingest",
+    "cashflo-data-ingestion-openapi.json: declared missing tag: Ingest",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cashflo-ingest-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
