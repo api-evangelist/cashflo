@@ -148,71 +148,112 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    IngestionSuccess:
+    GRNItems:
       type: object
-      properties:
-        batchId:
-          type: string
-          description: Ingestion batch id for retriving error details
-        message:
-          type: string
-          description: Informative message
-    GRNItem:
-      type: object
-      description: Item details in the GRN
+      description: Goods Receipt Note entry details
       required:
-      - grnItemNumber
-      - quantity
-      - unitCost
-      - gstPercent
-      - lineDiscount
-      - qtyRejected
+      - grnNumber
+      - buyFromVendorMasterNumber
+      - vendorInvoiceNo
+      - orderNo
+      - sourceCreationDate
+      - shipToBuyerFacilityCode
+      - grnItems
       properties:
         metadata:
           $ref: '#/components/schemas/Metadata'
-        grnItemNumber:
-          type: number
-          description: Unique identifier for the GRN item
-        quantity:
-          type: number
-          description: Quantity received
-        unitCost:
-          type: number
-          description: Cost per unit
-        gstPercent:
-          type: number
-          description: GST percentage
-        lineDiscount:
-          type: number
-          description: Line discount percentage
-        qtyRejected:
-          type: number
-          description: Quantity rejected
-    PurchaseOrderErrorsResponse:
-      type: object
-      properties:
-        purchaseOrders:
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseOrderError'
-          description: List of purchase orders
-    PurchaseOrder:
-      type: object
-      required:
-      - buyerOrgId
-      - purchaseOrders
-      properties:
-        skipDuplicates:
-          type: boolean
-          description: Whether to skip duplicate purchase orders
-        buyerOrgId:
+        grnNumber:
           type: string
-          description: Identifier for the buyer's organization
-        purchaseOrders:
+          description: Unique identifier for the GRN entry
+        buyFromVendorMasterNumber:
+          type: string
+          description: Vendor master number for the buying organization
+        vendorInvoiceNo:
+          type: string
+          description: Vendor's invoice number
+        orderNo:
+          type: string
+          description: Purchase order number
+        sourceCreationDate:
+          type: string
+          format: date-time
+          description: Date of GRN creation
+        shipToBuyerFacilityCode:
+          type: string
+          description: Code for the buyer's facility
+        grnItems:
           type: array
-          description: List of purchase orders
+          description: List of items in the GRN
           items:
-            $ref: '#/components/schemas/SinglePurchaseOrder'
+            $ref: '#/components/schemas/GRNItem'
+        billToBuyerFacilityCode:
+          type: string
+          description: Code for the buyer's billing facility
+        payToVendorMasterNumber:
+          type: string
+          description: Vendor master number for payment
+    PurchaseOrderError:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: The status of the purchase order
+        purchaseOrderNumber:
+          type: string
+          description: The purchase order number
+        buyFromVendorMasterNumber:
+          type: integer
+          description: The vendor master number for the buying entity
+        sourceCreationDate:
+          type: string
+          format: date-time
+          description: The creation date of the purchase order
+        deliveryAt:
+          type: string
+          format: date-time
+          description: The delivery date of the purchase order
+        shipToBuyerFacilityCode:
+          type: string
+          description: The facility code for shipping to the buyer
+        billToBuyerFacilityCode:
+          type: string
+          description: The facility code for billing to the buyer
+        totalAmount:
+          type: integer
+          description: The total amount of the purchase order
+        payToVendorMasterNumber:
+          type: integer
+          description: The vendor master number for payment
+        itemCount:
+          type: integer
+          description: The number of items in the purchase order
+        deliveredTotalAmount:
+          type: integer
+          description: The total amount delivered
+        poVendorCode:
+          type:
+          - integer
+          - 'null'
+          description: The vendor code associated with the purchase order. It can be null.
+        error:
+          type:
+          - string
+          - 'null'
+          description: Error message describing the details of error
+      example:
+        status: 1
+        purchaseOrderNumber: BUYER25098
+        buyFromVendorMasterNumber: 379
+        sourceCreationDate: '2023-10-10T21:34:20'
+        deliveryAt: '2023-12-15T00:00:00'
+        shipToBuyerFacilityCode: BUYER
+        billToBuyerFacilityCode: BUYER
+        totalAmount: 588000
+        payToVendorMasterNumber: 379
+        itemCount: 6
+        deliveredTotalAmount: 0
+        poVendorCode: null
+        error: 'Vendor Master: 379 not found'
     SinglePurchaseOrder:
       type: object
       required:
@@ -276,6 +317,75 @@ components:
         deliveredTotalAmount:
           type: number
           description: Total amount of items delivered
+    GRNItem:
+      type: object
+      description: Item details in the GRN
+      required:
+      - grnItemNumber
+      - quantity
+      - unitCost
+      - gstPercent
+      - lineDiscount
+      - qtyRejected
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        grnItemNumber:
+          type: number
+          description: Unique identifier for the GRN item
+        quantity:
+          type: number
+          description: Quantity received
+        unitCost:
+          type: number
+          description: Cost per unit
+        gstPercent:
+          type: number
+          description: GST percentage
+        lineDiscount:
+          type: number
+          description: Line discount percentage
+        qtyRejected:
+          type: number
+          description: Quantity rejected
+    IngestionSuccess:
+      type: object
+      properties:
+        batchId:
+          type: string
+          description: Ingestion batch id for retriving error details
+        message:
+          type: string
+          description: Informative message
+    Metadata:
+      type: object
+      properties:
+        key_name_1:
+          type: string
+          description: Value associated with key_name_1
+        key_name_2:
+          type: string
+          description: Value associated with key_name_2
+        key_name_n:
+          type: string
+          description: Value associated with key_name_n
+    PurchaseOrder:
+      type: object
+      required:
+      - buyerOrgId
+      - purchaseOrders
+      properties:
+        skipDuplicates:
+          type: boolean
+          description: Whether to skip duplicate purchase orders
+        buyerOrgId:
+          type: string
+          description: Identifier for the buyer's organization
+        purchaseOrders:
+          type: array
+          description: List of purchase orders
+          items:
+            $ref: '#/components/schemas/SinglePurchaseOrder'
     PurchaseOrderItem:
       type: object
       required:
@@ -343,132 +453,36 @@ components:
           description: List of Goods Receipt Note entries
           items:
             $ref: '#/components/schemas/GRNItems'
-    Metadata:
+    PurchaseOrderErrorsResponse:
       type: object
       properties:
-        key_name_1:
-          type: string
-          description: Value associated with key_name_1
-        key_name_2:
-          type: string
-          description: Value associated with key_name_2
-        key_name_n:
-          type: string
-          description: Value associated with key_name_n
-    PurchaseOrderError:
-      type: object
-      properties:
-        status:
-          type: integer
-          description: The status of the purchase order
-        purchaseOrderNumber:
-          type: string
-          description: The purchase order number
-        buyFromVendorMasterNumber:
-          type: integer
-          description: The vendor master number for the buying entity
-        sourceCreationDate:
-          type: string
-          format: date-time
-          description: The creation date of the purchase order
-        deliveryAt:
-          type: string
-          format: date-time
-          description: The delivery date of the purchase order
-        shipToBuyerFacilityCode:
-          type: string
-          description: The facility code for shipping to the buyer
-        billToBuyerFacilityCode:
-          type: string
-          description: The facility code for billing to the buyer
-        totalAmount:
-          type: integer
-          description: The total amount of the purchase order
-        payToVendorMasterNumber:
-          type: integer
-          description: The vendor master number for payment
-        itemCount:
-          type: integer
-          description: The number of items in the purchase order
-        deliveredTotalAmount:
-          type: integer
-          description: The total amount delivered
-        poVendorCode:
-          type:
-          - integer
-          - 'null'
-          description: The vendor code associated with the purchase order. It can be null.
-        error:
-          type:
-          - string
-          - 'null'
-          description: Error message describing the details of error
-      example:
-        status: 1
-        purchaseOrderNumber: BUYER25098
-        buyFromVendorMasterNumber: 379
-        sourceCreationDate: '2023-10-10T21:34:20'
-        deliveryAt: '2023-12-15T00:00:00'
-        shipToBuyerFacilityCode: BUYER
-        billToBuyerFacilityCode: BUYER
-        totalAmount: 588000
-        payToVendorMasterNumber: 379
-        itemCount: 6
-        deliveredTotalAmount: 0
-        poVendorCode: null
-        error: 'Vendor Master: 379 not found'
-    GRNItems:
-      type: object
-      description: Goods Receipt Note entry details
-      required:
-      - grnNumber
-      - buyFromVendorMasterNumber
-      - vendorInvoiceNo
-      - orderNo
-      - sourceCreationDate
-      - shipToBuyerFacilityCode
-      - grnItems
-      properties:
-        metadata:
-          $ref: '#/components/schemas/Metadata'
-        grnNumber:
-          type: string
-          description: Unique identifier for the GRN entry
-        buyFromVendorMasterNumber:
-          type: string
-          description: Vendor master number for the buying organization
-        vendorInvoiceNo:
-          type: string
-          description: Vendor's invoice number
-        orderNo:
-          type: string
-          description: Purchase order number
-        sourceCreationDate:
-          type: string
-          format: date-time
-          description: Date of GRN creation
-        shipToBuyerFacilityCode:
-          type: string
-          description: Code for the buyer's facility
-        grnItems:
+        purchaseOrders:
           type: array
-          description: List of items in the GRN
           items:
-            $ref: '#/components/schemas/GRNItem'
-        billToBuyerFacilityCode:
-          type: string
-          description: Code for the buyer's billing facility
-        payToVendorMasterNumber:
-          type: string
-          description: Vendor master number for payment
+            $ref: '#/components/schemas/PurchaseOrderError'
+          description: List of purchase orders
   responses:
-    Unauthorized:
-      description: Unauthorized
+    BadRequest:
+      description: Bad request, invalid input
       content:
         application/json:
           example:
-            errorCode: UNAUTHORIZED
-            message: Authorization failed. Please provide a valid JWT token.
+            errorCode: BAD_REQUEST
+            message: The provided data is invalid. Please check your input.
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          example:
+            errorCode: NOT_FOUND
+            message: Required information not found.
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          example:
+            errorCode: INTERNAL_ERROR
+            message: An internal server error occurred. Please try again later.
     Success:
       description: Ingestion success details
       content:
@@ -478,27 +492,13 @@ components:
           example:
             message: Ingestion data accepted for processing.
             batchId: 00hQAanwMn
-    BadRequest:
-      description: Bad request, invalid input
+    Unauthorized:
+      description: Unauthorized
       content:
         application/json:
           example:
-            errorCode: BAD_REQUEST
-            message: The provided data is invalid. Please check your input.
-    ServerError:
-      description: Internal server error
-      content:
-        application/json:
-          example:
-            errorCode: INTERNAL_ERROR
-            message: An internal server error occurred. Please try again later.
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          example:
-            errorCode: NOT_FOUND
-            message: Required information not found.
+            errorCode: UNAUTHORIZED
+            message: Authorization failed. Please provide a valid JWT token.
   securitySchemes:
     jwt:
       type: apiKey
