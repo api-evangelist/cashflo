@@ -86,6 +86,9 @@ apis:
   - type: DataModel
     url: data-model/cashflo-data-model.yml
 common:
+- type: CapabilityMap
+  url: capabilities/cashflo-capability-edges.yml
+  name: CashFlo Business Capability Map
 - type: Website
   url: https://www.cashflo.io/
 - type: AgentSkill

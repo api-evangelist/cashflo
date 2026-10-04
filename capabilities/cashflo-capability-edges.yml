@@ -1,0 +1,27 @@
+slug: cashflo
+provider: CashFlo
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Ingest
+  spec_file: cashflo-ingest-api-openapi.yml
+  capability_id: BC-500.40
+  capability_id_l1: BC-500
+  capability_name: Procure-to-Pay Operations Management
+  confidence: 0.7
+  evidence: POST /v1/ingest/purchase-orders 'Ingests Purchase Orders'; POST /v1/ingest/grns 'Ingests Goods
+    Receipt Note (GRN)'; schemas 'PurchaseOrder', 'GRNItems'
+  reason: The surface ingests purchase orders and goods receipt notes into the platform to support invoice
+    matching, which is procure-to-pay document and receipt handling. Some ambiguity between Purchase Order
+    Management and broader P2P operations (GRNs are receipts), so the P2P operations sub-capability is
+    chosen at 0.7.
